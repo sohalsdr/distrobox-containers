@@ -11,8 +11,8 @@ jobs:
     steps:
     - uses: actions/checkout@v2
     - name: Login to GHCR
-      run: echo ${{ secrets.GITHUB_TOKEN }} | docker login ghcr.io -u ${{ variables.GHCR_USERNAME }} --password-stdin
+      run: echo ${{ secrets.GITHUB_TOKEN }} | docker login ghcr.io -u $GHCR_USERNAME --password-stdin
     - name: Build and Push Container
       env:
-        GHCR_OWNER: ${{ variables.GHCR_USERNAME }}
+        GHCR_OWNER: $GHCR_USERNAME
       run: make
