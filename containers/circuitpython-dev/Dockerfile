@@ -1,4 +1,5 @@
 FROM alpine:3.20
+LABEL org.opencontainers.image.source https://github.com/sohalsdr/distrobox-containers
 
 # Add community repo
 RUN echo "https://dl-cdn.alpinelinux.org/alpine/v$(cut -d'.' -f1,2 /etc/alpine-release)/community/" >> /etc/apk/repositories
