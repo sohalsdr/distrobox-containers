@@ -6,13 +6,21 @@ on:
     tags: [ v* ]
 
 jobs:
-  build:
+  login:
     runs-on: ubuntu-latest
     steps:
-    - uses: actions/checkout@v2
-    - name: Login to GHCR
-      run: echo ${{ secrets.GITHUB_TOKEN }} | docker login ghcr.io -u ${{ env.GHCR_USERNAME }} --password-stdin
+      -
+        name: Login to GitHub Container Registry
+        uses: docker/login-action@v3
+        with:
+          registry: ghcr.io
+          username: ${{ github.actor }}
+          password: ${{ secrets.GITHUB_TOKEN }}
+  build-push:
+    runs-on: ubuntu-latest
+    steps:
+    - uses: actions/checkout@v4
     - name: Build and Push Container
       env:
-        GHCR_OWNER: ${{ env.GHCR_USERNAME }}
+        GHCR_OWNER: ${{ github.actor }}
       run: make
