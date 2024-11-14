@@ -15,6 +15,7 @@ Slim, preconfigured environment based on Alpine with basic environment, plus pyt
 
 ### Post-install steps
 - Run `sudo chsh -s /usr/bin/fish $USER` to change default shell to fish
+- Run `pipx ensurepath` to add pipx packages to PATH
 - Set up GitHub authentication with GitHub CLI
 - Set git username and email
 - Install [CircuitPython Extension for VSCode](https://marketplace.visualstudio.com/items?itemName=joedevivo.vscode-circuitpython)
