@@ -5,7 +5,6 @@ Starting points for Distrobox, with preconfiguration. Functionality is implement
 All-purpose starting point for development. Arch system with basic environment installed and configured
 
 ### Post-install steps
-- Run `sudo chsh -s /usr/bin/fish $USER` to change default shell to fish
 - Set up GitHub authentication with GitHub CLI
 - Set git username and email
 - Potentially install an AUR helper
@@ -14,7 +13,6 @@ All-purpose starting point for development. Arch system with basic environment i
 Slim, preconfigured environment based on Alpine with basic environment, plus python, pip, and circup for managing CircuitPython libraries
 
 ### Post-install steps
-- Run `sudo chsh -s /usr/bin/fish $USER` to change default shell to fish
 - Run `pipx ensurepath` to add pipx packages to PATH
 - Set up GitHub authentication with GitHub CLI
 - Set git username and email
