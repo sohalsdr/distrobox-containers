@@ -5,7 +5,7 @@ RUN echo "https://dl-cdn.alpinelinux.org/alpine/v$(cut -d'.' -f1,2 /etc/alpine-r
 RUN apk update
 
 # Install packages
-RUN apk add fish fastfetch helix git github-cli starship screen python3 
+RUN apk add fish fastfetch helix git github-cli starship screen python3 py3-pip
 
 # Install circup
 RUN python3 -m pip install circup
