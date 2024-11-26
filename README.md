@@ -24,3 +24,9 @@ Slim, preconfigured environment based on Alpine with basic environment, plus pyt
 - Set up GitHub authentication with GitHub CLI
 - Set git username and email
 - Install [CircuitPython Extension for VSCode](https://marketplace.visualstudio.com/items?itemName=joedevivo.vscode-circuitpython)
+
+## butane-deploy
+Similar to generic-dev-slim, but with butane and other utilities for working with and serving up Butane/Ignition configs
+
+### Post-install steps
+- Run the post-install script with the following command: `fish ~/.post_install/configure.fish`
