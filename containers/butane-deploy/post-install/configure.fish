@@ -14,5 +14,9 @@ for module in $SCRIPT_DIR/modules/*.fish
 end
 
 github_auth
-
 git_config
+
+set GIT_NAME (git config --global user.name)
+if test -n "$GIT_NAME"
+    create_directory "Git Working Directory" "$HOME/Git/$GIT_NAME"
+end

@@ -1,9 +1,10 @@
 #!/usr/bin/env fish
 
 function github_auth
-    info_print "\nPost-Install: Configure Github authentication"
+    info_print "\nConfiguration: Github Authentication"
     if read_confirm
-        info_print "Launching Github authentication flow..."
+
+        info_print "\nLaunching Github authentication flow..."
         command_print "gh auth login"
         if gh auth login
             success_print "Successfully authenticated with Github!"

@@ -30,3 +30,6 @@ Similar to generic-dev-slim, but with butane and other utilities for working wit
 
 ### Post-install steps
 - Run the post-install script with the following command: `fish ~/.post_install/configure.fish`
+    - Configures Github auth
+    - Configures Git name and email
+    - Creates Git working directory
