@@ -1,12 +1,11 @@
-FROM alpine:edge
+FROM fedora:latest
 LABEL org.opencontainers.image.source https://github.com/sohalsdr/distrobox-containers
 
-# Add testing repo (community repo is already enabled)
-RUN echo "https://dl-cdn.alpinelinux.org/alpine/edge/testing/" >> /etc/apk/repositories
-RUN apk update
+# Add copr for starship prompt
+RUN dnf copr --assumeyes enable atim/starship 
 
 # Install packages
-RUN apk add fish fastfetch helix git github-cli starship python3 py3-pip butane make
+RUN dnf install --assumeyes fish fastfetch helix git gh starship python3 python3-pip make butane coreos-installer
 
 # Copy configs into skel
 WORKDIR /etc/skel/.config
