@@ -5,7 +5,7 @@ LABEL org.opencontainers.image.source https://github.com/sohalsdr/distrobox-cont
 RUN dnf copr --assumeyes enable atim/starship 
 
 # Install packages
-RUN dnf install --assumeyes fish fastfetch helix git gh starship python3 python3-pip make envsubst butane coreos-installer
+RUN dnf install --assumeyes fish fastfetch helix git gh starship python3 python3-pip make envsubst mkpasswd butane coreos-installer
 
 # Copy configs into skel
 WORKDIR /etc/skel/.config
