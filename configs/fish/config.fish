@@ -7,7 +7,7 @@ if not command -v hx >/dev/null
 end
 
 # Autorun post install script on first launch
-if test -e $HOME/.post-install/post-install.fish and not test -e $HOME/.post-install-autorun
+if is-interactive and test -e $HOME/.post-install/post-install.fish and not test -e $HOME/.post-install-autorun
     fish $HOME/.post-install/post-install.fish
     touch $HOME/.post-install-autorun
 end
