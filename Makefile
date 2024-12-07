@@ -13,8 +13,11 @@ all: ${IMAGE_DIRS}
 # Build and tag a single image
 ${IMAGE_DIRS}:
 	$(eval IMAGE_NAME := $(subst /,-,$@))
+	mkdir -p $@/configs
 	cp -r configs/* $@/configs
+	mkdir -p $@/post-install
 	cp -r post-install/* $@/post-install
+	mkdir -p $@/scripts
 	cp -r scripts/* $@/scripts
 	docker build -t ghcr.io/${GHCR_OWNER}/${IMAGE_PREFIX}${IMAGE_NAME}:${IMAGES_TAG} -t ghcr.io/${GHCR_OWNER}/${IMAGE_PREFIX}${IMAGE_NAME}:latest --build-arg TAG=${IMAGE_PREFIX}${IMAGE_NAME} --build-arg GIT_SHA1=${GIT_SHA1} $@
 	docker push ghcr.io/${GHCR_OWNER}/${IMAGE_PREFIX}${IMAGE_NAME}:${IMAGES_TAG}
