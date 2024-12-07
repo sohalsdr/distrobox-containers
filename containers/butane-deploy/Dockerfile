@@ -10,7 +10,7 @@ COPY charm.repo ./
 RUN rpm --import https://repo.charm.sh/yum/gpg.key
 
 # Install packages
-RUN dnf install --assumeyes fish fastfetch helix git gh starship gum python3 python3-pip make envsubst mkpasswd butane coreos-installer
+RUN dnf install --assumeyes fish fastfetch helix git gh starship gum python3 python3-pip pipx make envsubst mkpasswd butane coreos-installer
 
 # Copy configs into skel
 WORKDIR /etc/skel/.config
