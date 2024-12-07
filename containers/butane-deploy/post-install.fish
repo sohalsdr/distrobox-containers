@@ -13,10 +13,13 @@ for module in $SCRIPT_DIR/modules/*.fish
     source $module
 end
 
-github_auth
+script_head "> The Post-Install Script"
+
 git_config
+git_cred_store
+github_auth
 
 set GIT_NAME (git config --global user.name)
 if test -n "$GIT_NAME"
-    create_directory "Git Working Directory" "$HOME/Git/$GIT_NAME"
+    create_dir "Git Working Directory" "$HOME/Git/$GIT_NAME"
 end

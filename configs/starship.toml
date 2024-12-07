@@ -3,6 +3,6 @@ add_newline = true
 
 [character]
 # Character shown after success
-success_symbol = '[ ](bold green)'
+success_symbol = '[󰏗 ](bold green)'
 # Character shown after error
-error_symbol = '[ ](bold red)'
+error_symbol = '[󱧖 ](bold red)'
