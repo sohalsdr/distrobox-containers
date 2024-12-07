@@ -15,7 +15,7 @@ ${IMAGE_DIRS}:
 	$(eval IMAGE_NAME := $(subst /,-,$@))
 	rsync -r configs $@/configs
 	rsync -r post-install $@/post-install
-	rsync -r scripts $A/scripts
+	rsync -r scripts $@/scripts
 	docker build -t ghcr.io/${GHCR_OWNER}/${IMAGE_PREFIX}${IMAGE_NAME}:${IMAGES_TAG} -t ghcr.io/${GHCR_OWNER}/${IMAGE_PREFIX}${IMAGE_NAME}:latest --build-arg TAG=${IMAGE_PREFIX}${IMAGE_NAME} --build-arg GIT_SHA1=${GIT_SHA1} $@
 	docker push ghcr.io/${GHCR_OWNER}/${IMAGE_PREFIX}${IMAGE_NAME}:${IMAGES_TAG}
 	docker push ghcr.io/${GHCR_OWNER}/${IMAGE_PREFIX}${IMAGE_NAME}:latest
