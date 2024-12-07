@@ -7,7 +7,7 @@ RUN dnf copr --assumeyes enable atim/starship
 # Add repo for gum
 WORKDIR /etc/yum.repos.d
 COPY charm.repo ./
-rpm --import https://repo.charm.sh/yum/gpg.key
+RUN rpm --import https://repo.charm.sh/yum/gpg.key
 
 # Install packages
 RUN dnf install --assumeyes fish fastfetch helix git gh starship gum python3 python3-pip make envsubst mkpasswd butane coreos-installer
