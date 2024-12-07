@@ -5,31 +5,24 @@ Starting points for Distrobox, with preconfiguration. Functionality is implement
 All-purpose starting point for development. Arch system with basic environment installed and configured.
 
 ### Post-install steps
-- Set up GitHub authentication with GitHub CLI
-- Set git username and email
+- Run post install script with `post-install-script`
 - Potentially install an AUR helper
 
 ## generic-dev-slim
 Same idea as generic-dev, but based on Alpine Edge instead.
 
 ### Post-install steps
-- Set up GitHub authentication with GitHub CLI
-- Set git username and email
+- Run post install script with `post-install-script`
 
 ## circuitpython-dev
 Slim, preconfigured environment based on Alpine with basic environment, plus python, pip, and circup for managing CircuitPython libraries.
 
 ### Post-install steps
-- Run `pipx ensurepath` to add pipx packages to PATH
-- Set up GitHub authentication with GitHub CLI
-- Set git username and email
+- Run post install script with `post-install-script`
 - Install [CircuitPython Extension for VSCode](https://marketplace.visualstudio.com/items?itemName=joedevivo.vscode-circuitpython)
 
 ## butane-deploy
 Similar to generic-dev-slim, but with butane and other utilities for working with and serving up Butane/Ignition configs
 
 ### Post-install steps
-- Run the post-install script with the following command: `fish ~/.post_install/configure.fish`
-    - Configures Github auth
-    - Configures Git name and email
-    - Creates Git working directory
+- Run post install script with `post-install-script`

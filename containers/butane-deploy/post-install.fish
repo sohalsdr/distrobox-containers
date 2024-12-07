@@ -14,7 +14,7 @@ for module in $SCRIPT_DIR/modules/*.fish
 end
 
 script_head "> The Post-Install Script"
-
+install_pipx_package chevron
 git_config
 git_cred_store
 gh_auth
