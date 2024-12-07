@@ -6,8 +6,17 @@ RUN echo "https://dl-cdn.alpinelinux.org/alpine/edge/testing/" >> /etc/apk/repos
 RUN apk update
 
 # Install packages
-RUN apk add fish fastfetch helix git github-cli starship python3 py3-pip
+RUN apk add fish fastfetch helix git github-cli starship gum python3 py3-pip
 
 # Copy configs into skel
 WORKDIR /etc/skel/.config
 COPY configs/ ./
+
+# Copy post install items into skel
+WORKDIR /etc/skel/.post_install
+COPY post-install.fish ./
+COPY post-install/ ./
+
+# Copy any scripts into skel
+WORKDIR /etc/skel/.scripts
+COPY scripts/ ./
