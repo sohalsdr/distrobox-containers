@@ -13,7 +13,11 @@ all: ${IMAGE_DIRS}
 # Build and tag a single image
 ${IMAGE_DIRS}:
 	$(eval IMAGE_NAME := $(subst /,-,$@))
+	rsync -r configs $@/configs
+	rsync -r post-install $@/post-install
+	rsync -r scripts $A/scripts
 	docker build -t ghcr.io/${GHCR_OWNER}/${IMAGE_PREFIX}${IMAGE_NAME}:${IMAGES_TAG} -t ghcr.io/${GHCR_OWNER}/${IMAGE_PREFIX}${IMAGE_NAME}:latest --build-arg TAG=${IMAGE_PREFIX}${IMAGE_NAME} --build-arg GIT_SHA1=${GIT_SHA1} $@
 	docker push ghcr.io/${GHCR_OWNER}/${IMAGE_PREFIX}${IMAGE_NAME}:${IMAGES_TAG}
 	docker push ghcr.io/${GHCR_OWNER}/${IMAGE_PREFIX}${IMAGE_NAME}:latest
+	rm -r $@/configs $@/post-install $@/scripts
 
