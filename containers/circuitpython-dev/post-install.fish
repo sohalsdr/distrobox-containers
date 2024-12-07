@@ -15,9 +15,10 @@ end
 
 script_head "> The Post-Install Script"
 
+install_pipx_package circup
 git_config
 git_cred_store
-github_auth
+gh_auth
 
 set GIT_NAME (git config --global user.name)
 if test -n "$GIT_NAME"

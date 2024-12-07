@@ -8,9 +8,6 @@ RUN apk update
 # Install packages
 RUN apk add fish fastfetch helix git github-cli starship gum screen python3 py3-pip pipx
 
-# Install circup
-RUN pipx install circup
-
 # Copy configs into skel
 WORKDIR /etc/skel/.config
 COPY configs/ ./
