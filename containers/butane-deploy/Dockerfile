@@ -17,7 +17,7 @@ WORKDIR /etc/skel/.config
 COPY configs/ ./
 
 # Copy post install items into skel
-WORKDIR /etc/skel/.post_install
+WORKDIR /etc/skel/.post-install
 COPY post-install.fish ./
 COPY post-install/ ./
 
