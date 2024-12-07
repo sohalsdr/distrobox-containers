@@ -10,6 +10,11 @@ function install_pipx_package
         else
             gum log -sl error "Unable to install package." package "$argv[1]"
         end
+        if gum spin --title "Ensuring pipx packages are in PATH" --show-output -- pipx ensurepath
+            gum log -sl info "Successfully ran pipx ensurepath!"
+        else
+            gum log -sl error "Error when running pipx ensurepath."
+        end
     else
         gum log -sl warn "Not installing $argv[1]."
     end
