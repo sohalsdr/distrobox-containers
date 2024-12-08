@@ -2,7 +2,7 @@ FROM archlinux:latest
 LABEL org.opencontainers.image.source https://github.com/sohalsdr/distrobox-containers
 
 # Install packages
-RUN pacman -Sy --noconfirm fish fastfetch helix git github-cli starship gum base-devel pacman-contrib mesa python cargo
+RUN pacman -Sy --noconfirm fish fastfetch helix git github-cli starship gum base-devel mesa python
 
 # Copy configs into skel
 WORKDIR /etc/skel/.config
