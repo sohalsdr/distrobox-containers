@@ -22,3 +22,5 @@ set GIT_NAME (git config --global user.name)
 if test -n "$GIT_NAME"
     create_dir "Git Working Directory" "$HOME/Git/$GIT_NAME"
 end
+
+install_ame_aur
