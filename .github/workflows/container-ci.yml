@@ -12,15 +12,17 @@ jobs:
     env:
       containers_path: ./containers
     outputs:
-      folders: # id of output
+      folders: 
         description: 'A JSON formatted list of folders'
         value: ${{ steps.set-folders.outputs.folders }}
     runs:
       using: 'composite'
       steps:
-        - run: apt update && apt install tree jq -y
+        - name: Install Dependencies
+          run: apt update && apt install tree jq -y
           shell: bash
-        - id: set-folders
+        - name: List Folders
+          id: set-folders
           shell: bash
           run: |
             cd $containers_path
@@ -31,6 +33,7 @@ jobs:
   build-push:
     name: Build and Push 
     runs-on: ubuntu-latest
+    needs: find-jobs
     strategy:
       matrix:
         folder: ${{ fromJson(needs.find-jobs.outputs.folders) }}
