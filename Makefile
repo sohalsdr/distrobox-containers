@@ -4,7 +4,7 @@ IMAGES_TAG = ${shell git describe --exact-match --tags 2> /dev/null || echo 'lat
 IMAGE_PREFIX = distrobox-containers-
 
 # Unless specified on the command line, build all images (sets IMAGE to a list of every folder in containers/)
-IMAGES = $(patsubst containers/%,%,$(wildcard containers/*))
+IMAGES = generic-dev
 
 # All targets are `.PHONY` ie allways need to be rebuilt
 .PHONY: default container
