@@ -14,9 +14,7 @@ jobs:
     outputs:
       folders: ${{ steps.set-folders.outputs.folders }}
     steps:
-    - name: Install Dependencies
-      run: sudo apt-get update && sudo apt-get install tree jq -y
-      shell: bash
+    - uses: actions/checkout@v4
     - name: List Folders
       id: set-folders
       shell: bash
