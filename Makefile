@@ -4,17 +4,18 @@ IMAGES_TAG = ${shell git describe --exact-match --tags 2> /dev/null || echo 'lat
 IMAGE_PREFIX = distrobox-containers-
 
 # Unless specified on the command line, build all images (sets IMAGE to a list of every folder in containers/)
-IMAGE_DIR = $(wildcard containers/*)
+IMAGES = $(subst containers/,,$(wildcard containers/*))
 
 # All targets are `.PHONY` ie allways need to be rebuilt
-.PHONY: all ${IMAGE_DIR}
+.PHONY: all ${IMAGES}
 
 # Build all images (or only specified image(s) if IMAGE_DIR is overriden)
-all: ${IMAGE_DIR}
+all: ${IMAGES}
 
 # Build and tag a single image
-${IMAGE_DIR}:
-	$(eval IMAGE_NAME := $(subst containers,,$(subst /,,$@)))
+${IMAGES}:
+	$(eval IMAGE_NAME := $@)
+	$(eval IMAGE_DIR := $(patsubst %,containers/%,$@))
 
 	mkdir -p $@/configs
 	cp -r configs/* $@/configs
@@ -23,7 +24,7 @@ ${IMAGE_DIR}:
 	mkdir -p $@/scripts
 	cp -r scripts/* $@/scripts
 
-	docker build -t ghcr.io/${GHCR_OWNER}/${IMAGE_PREFIX}${IMAGE_NAME}:${IMAGES_TAG} -t ghcr.io/${GHCR_OWNER}/${IMAGE_PREFIX}${IMAGE_NAME}:latest --build-arg TAG=${IMAGE_PREFIX}${IMAGE_NAME} --build-arg GIT_SHA1=${GIT_SHA1} $@
+	docker build -t ghcr.io/${GHCR_OWNER}/${IMAGE_PREFIX}${IMAGE_NAME}:${IMAGES_TAG} -t ghcr.io/${GHCR_OWNER}/${IMAGE_PREFIX}${IMAGE_NAME}:latest --build-arg TAG=${IMAGE_PREFIX}${IMAGE_NAME} --build-arg GIT_SHA1=${GIT_SHA1} ${IMAGE_DIR}
 	docker push ghcr.io/${GHCR_OWNER}/${IMAGE_PREFIX}${IMAGE_NAME}:${IMAGES_TAG}
 	docker push ghcr.io/${GHCR_OWNER}/${IMAGE_PREFIX}${IMAGE_NAME}:latest
 	
