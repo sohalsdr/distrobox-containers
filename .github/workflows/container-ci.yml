@@ -8,7 +8,7 @@ on:
 jobs:
   find-jobs:
     name: Find Containers to Build
-    container: debian:buster-slim
+    runs-on: ubuntu-latest
     outputs:
       folders: ${{ steps.jobs.outputs.folders }}
     steps:
