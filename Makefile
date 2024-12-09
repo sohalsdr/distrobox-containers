@@ -4,18 +4,18 @@ IMAGES_TAG = ${shell git describe --exact-match --tags 2> /dev/null || echo 'lat
 IMAGE_PREFIX = distrobox-containers-
 
 # Unless specified on the command line, build all images (sets IMAGE to a list of every folder in containers/)
-IMAGES = generic-dev
+IMAGE = generic-dev
 
 # All targets are `.PHONY` ie allways need to be rebuilt
-.PHONY: default container
+.PHONY: default container wsl
 
 # Build container image(s) by default
 default: container
 
 # Build and tag container image
 container:
-	$(eval IMAGE_NAME := ${IMAGES})
-	$(eval IMAGE_DIR := $(patsubst %,containers/%,${IMAGES}))
+	$(eval IMAGE_NAME := ${IMAGE})
+	$(eval IMAGE_DIR := $(patsubst %,containers/%,${IMAGE}))
 
 	mkdir -p ${IMAGE_DIR}/configs
 	cp -r configs/* ${IMAGE_DIR}/configs
@@ -30,3 +30,10 @@ container:
 	
 	rm -r ${IMAGE_DIR}/configs ${IMAGE_DIR}/post-install ${IMAGE_DIR}/scripts
 
+# Run the generated container and export archive for use with WSL
+wsl:
+	$(eval IMAGE_NAME := ${IMAGE})
+	$(eval IMAGE_URI := $(patsubst %,ghcr.io/${GHCR_OWNER}/${IMAGE_PREFIX}%,${IMAGE}))
+	docker run -t --name wsl_export ${IMAGE_URI} ls /
+	docker export wsl_export > wsl-${IMAGE_NAME}.tar
+	docker rm wsl_export
