@@ -9,7 +9,7 @@ IMAGE_DIR = $(wildcard containers/*)
 # All targets are `.PHONY` ie allways need to be rebuilt
 .PHONY: all ${IMAGE_DIR}
 
-# Build all images
+# Build all images (or only specified image(s) if IMAGE_DIR is overriden)
 all: ${IMAGE_DIR}
 
 # Build and tag a single image
