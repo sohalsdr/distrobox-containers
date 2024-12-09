@@ -46,7 +46,10 @@ jobs:
   wsl-export:
     name: Export WSL Archive
     runs-on: ubuntu-latest
-    needs: build-push
+    needs: [ find-jobs, build-push ]
+    strategy:
+      matrix:
+        folder: ${{ fromJson(needs.find-jobs.outputs.folders) }}
     steps:
     - uses: docker/login-action@v3
       with:
@@ -57,11 +60,11 @@ jobs:
     - name: Run Container and Export Archive
       env:
         GHCR_OWNER: ${{ github.actor }}
-      run: make wsl IMAGE=${{ needs.build-push.matrix.folder }}
+      run: make wsl IMAGE=${{ matrix.folder }}
     - uses: actions/upload-artifact@v4
       with:
-        name: wsl-${{ needs.build-push.matrix.folder }}
-        path: wsl-${{ needs.build-push.matrix.folder }}.tar
+        name: wsl-${{ matrix.folder }}
+        path: wsl-${{ matrix.folder }}.tar
         overwrite: true
 
 
