@@ -20,7 +20,7 @@ Alternatively, they can be downloaded via [nightly.link](https://nightly.link) a
 [Download artifacts here](https://nightly.link/sohalsdr/distrobox-containers/workflows/container-ci/main?preview)
 
 After downloading the tarfile, you'll likely need to:
-- Move the file to where the distro should be stored
+- Make a folder where the distro should be stored
 - Import the tarfile using `wsl --import`
 - Create a user
 - Ensure they have desired groups and permissions (such as the ability to sudo)
