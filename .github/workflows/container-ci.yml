@@ -12,11 +12,8 @@ jobs:
     env:
       containers_path: ./containers
     outputs:
-      folders: 
-        description: 'A JSON formatted list of folders'
-        value: ${{ steps.set-folders.outputs.folders }}
+      folders: ${{ steps.set-folders.outputs.folders }}
     runs:
-      using: 'composite'
       steps:
         - name: Install Dependencies
           run: apt update && apt install tree jq -y
