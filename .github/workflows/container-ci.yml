@@ -41,4 +41,4 @@ jobs:
     - name: Build and Push Container
       env:
         GHCR_OWNER: ${{ github.actor }}
-      run: make IMAGE_DIR=${{ matrix.folder }}
+      run: make IMAGES=${{ matrix.folder }}

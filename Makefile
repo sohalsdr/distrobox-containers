@@ -17,16 +17,16 @@ ${IMAGES}:
 	$(eval IMAGE_NAME := $@)
 	$(eval IMAGE_DIR := $(patsubst %,containers/%,$@))
 
-	mkdir -p $@/configs
-	cp -r configs/* $@/configs
-	mkdir -p $@/post-install
-	cp -r post-install/* $@/post-install
-	mkdir -p $@/scripts
-	cp -r scripts/* $@/scripts
+	mkdir -p ${IMAGE_DIR)/configs
+	cp -r configs/* ${IMAGE_DIR)/configs
+	mkdir -p ${IMAGE_DIR)/post-install
+	cp -r post-install/* ${IMAGE_DIR)/post-install
+	mkdir -p ${IMAGE_DIR)/scripts
+	cp -r scripts/* ${IMAGE_DIR)/scripts
 
 	docker build -t ghcr.io/${GHCR_OWNER}/${IMAGE_PREFIX}${IMAGE_NAME}:${IMAGES_TAG} -t ghcr.io/${GHCR_OWNER}/${IMAGE_PREFIX}${IMAGE_NAME}:latest --build-arg TAG=${IMAGE_PREFIX}${IMAGE_NAME} --build-arg GIT_SHA1=${GIT_SHA1} ${IMAGE_DIR}
 	docker push ghcr.io/${GHCR_OWNER}/${IMAGE_PREFIX}${IMAGE_NAME}:${IMAGES_TAG}
 	docker push ghcr.io/${GHCR_OWNER}/${IMAGE_PREFIX}${IMAGE_NAME}:latest
 	
-	rm -r $@/configs $@/post-install $@/scripts
+	rm -r ${IMAGE_DIR)/configs ${IMAGE_DIR)/post-install ${IMAGE_DIR)/scripts
 
