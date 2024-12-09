@@ -7,7 +7,7 @@ IMAGE_PREFIX = distrobox-containers-
 IMAGE_DIR = $(wildcard containers/*)
 
 # All targets are `.PHONY` ie allways need to be rebuilt
-.PHONY: ${IMAGE}
+.PHONY: all ${IMAGE}
 
 # Build all images
 all: ${IMAGE_DIR}
