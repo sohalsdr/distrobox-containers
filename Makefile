@@ -14,7 +14,7 @@ all: ${IMAGE_DIR}
 
 # Build and tag a single image
 ${IMAGE_DIR}:
-	$(eval IMAGE_NAME := $(subst containers/,,$@))
+	$(eval IMAGE_NAME := $(subst containers,,$(subst /,,$@)))
 
 	mkdir -p $@/configs
 	cp -r configs/* $@/configs
