@@ -4,18 +4,18 @@ IMAGES_TAG = ${shell git describe --exact-match --tags 2> /dev/null || echo 'lat
 IMAGE_PREFIX = distrobox-containers-
 
 # Unless specified on the command line, build all images (sets IMAGE to a list of every folder in containers/)
-IMAGES = $(subst containers/,,$(wildcard containers/*))
+IMAGES = $(patsubst containers/%,%,$(wildcard containers/*))
 
 # All targets are `.PHONY` ie allways need to be rebuilt
-.PHONY: all ${IMAGES}
+.PHONY: default container
 
-# Build all images (or only specified image(s) if IMAGE_DIR is overriden)
-all: ${IMAGES}
+# Build container image(s) by default
+default: container
 
-# Build and tag a single image
-${IMAGES}:
-	$(eval IMAGE_NAME := $@)
-	$(eval IMAGE_DIR := $(patsubst %,containers/%,$@))
+# Build and tag container image
+container:
+	$(eval IMAGE_NAME := ${IMAGES})
+	$(eval IMAGE_DIR := $(patsubst %,containers/%,${IMAGES}))
 
 	mkdir -p ${IMAGE_DIR}/configs
 	cp -r configs/* ${IMAGE_DIR}/configs
