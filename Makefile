@@ -28,5 +28,5 @@ ${IMAGES}:
 	docker push ghcr.io/${GHCR_OWNER}/${IMAGE_PREFIX}${IMAGE_NAME}:${IMAGES_TAG}
 	docker push ghcr.io/${GHCR_OWNER}/${IMAGE_PREFIX}${IMAGE_NAME}:latest
 	
-	rm -r ${IMAGE_DIR)/configs ${IMAGE_DIR)/post-install ${IMAGE_DIR)/scripts
+	rm -r ${IMAGE_DIR}/configs ${IMAGE_DIR}/post-install ${IMAGE_DIR}/scripts
 
