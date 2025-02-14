@@ -17,3 +17,4 @@ script_head "> The Post-Install Script"
 
 git_config
 git_auth
+export_gui_app "Zim"
