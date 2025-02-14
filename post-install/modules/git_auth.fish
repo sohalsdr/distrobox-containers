@@ -6,9 +6,12 @@ function git_auth
     echo ""
 
     while true
-        set GIT_AUTH_CHOICE $(gum choose --header "How should Git be authenticated?" --limit 1 "Github CLI" "Plaintext Git Credential Store" "No Authentication")
+        set GIT_AUTH_CHOICE $(gum choose --header "How should Git be authenticated?" --limit 1 "Github CLI" "Gitlab CLI" "Plaintext Git Credential Store" "No Authentication")
         if [ $GIT_AUTH_CHOICE = "Github CLI" ]
             git_auth_gh
+            break
+        else if [ $GIT_AUTH_CHOICE = "Gitlab CLI" ]
+            git_auth_gl
             break
         else if [ $GIT_AUTH_CHOICE = "Plaintext Git Credential Store" ]
             git_auth_cred_store
@@ -26,6 +29,14 @@ function git_auth_gh
         gum log -sl info "Successfully set up Github authentication!"
     else
         gum log -sl error "Unable to set up Github authentication."
+    end
+end
+
+function git_auth_gl
+    if glab auth login
+        gum log -sl info "Successfully set up Gitlab authentication!"
+    else
+        gum log -sl error "Unable to set up Gitlab authentication."
     end
 end
 
